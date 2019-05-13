@@ -1,5 +1,18 @@
+import cv2
 import sys
+from dHash import DHash
 
-if __name__ == "__main__":
-    filename = sys.argv[0]
-    print(filename)
+
+def get_image_dhash():
+    url = sys.argv[1]
+    cap = cv2.VideoCapture(url)
+    ret = cap.isOpened()
+    if ret:
+        img = cap.read()[1]
+        dhash = DHash.calculate_hash(img)
+        print(dhash)
+    cap.release()
+
+
+if __name__ == '__main__':
+    get_image_dhash()

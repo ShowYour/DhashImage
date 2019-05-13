@@ -1,5 +1,6 @@
 package com.shiqing.hashImage.serviceImpl;
 
+import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,14 @@ public class DhashService {
         in.close();
         process.waitFor();
         return Integer.valueOf(buffer.toString());
+    }
+
+    @Test
+    public void test() throws IOException, InterruptedException {
+        DhashService dhashService = new DhashService();
+        String dhashOfImage = dhashService.getDhashOfImage("http://i5.qhimg.com/t019c3e49c9c9319c33.jpg");
+        Integer hanmDistance = dhashService.getHanmDistance("c82c3783aaed55a3", "c82c3783aaed55a3");
+        System.out.println("DHASH:"+dhashOfImage);
+        System.out.println("汉明距离："+hanmDistance);
     }
 }
